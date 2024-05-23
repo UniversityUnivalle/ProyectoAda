@@ -1,77 +1,73 @@
-# Libreria para graficar
 import matplotlib.pyplot as plt
-import numpy as np
+from itertools import combinations
 
-# arreglos de prueba
-ejemplo_1 = [[0, 0], [0, 2], [2, 0], [2, 2]]
-ejemplo_2 = [[1, 1], [1, 4], [4, 1], [4, 4]]
-ejemplo_3 = [[0, 0], [2, 0], [1, 1], [1, -1]]
-ejemplo_4 = [[2, 3], [5, 6], [2, 6], [5, 3]]
-ejemplo_5 = [[10, 10], [10, 14], [14, 10], [14, 14]]
-ejemplo_6 = [[0, 0], [3, 3], [6, 0], [3, -3]]
-ejemplo_7 = [[5, 5], [5, 8], [8, 5], [8, 8]]
-ejemplo_8 = [[1, 2], [1, 5], [4, 2], [4, 5]]
-ejemplo_9 = [[7, 8], [7, 11], [10, 8], [10, 11]]
-ejemplo_10 = [[3, 3], [3, 7], [7, 3], [7, 7]]
+def distancia(p1, p2):
+    return ((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2) ** 0.5
 
+def es_cuadrado(puntos):
+    if len(puntos) != 4:
+        return False
+    
+    distancias = [distancia(puntos[i], puntos[j]) for i in range(4) for j in range(i + 1, 4)]
+    distancias.sort()
+    
+    return distancias[0] == distancias[1] == distancias[2] == distancias[3]
 
-#Funcion para graficar, se puede mejorar o cambiar
-def graficarPuntos(lista):
-    # Extraer coordenadas X e Y de la lista
-    coordenadas_x = [punto[0] for punto in lista]
-    coordenadas_y = [punto[1] for punto in lista]
-    fig, ax = plt.subplots()
-    ax.set_xlabel("Eje X")
-    ax.set_ylabel("Eje Y")
-    ax.set_title("Puntos en el plano cartesiano")
-    ax.grid()
-    ax.set_ylim(-1 * np.max(coordenadas_y), np.max(coordenadas_y) + 1)
-    ax.set_xlim(-1 * np.max(coordenadas_x), np.max(coordenadas_x) + 1)
-    ax.axvline(color="black")
-    ax.axhline(color="black")
+def es_rectangulo(puntos):
+    if len(puntos) != 4:
+        return False
+    
+    distancias = [distancia(puntos[i], puntos[j]) for i in range(4) for j in range(i + 1, 4)]
+    distancias.sort()
+    
+    return distancias[0] == distancias[1] and distancias[2] == distancias[3]
 
-    # Unir los puntos con una línea cerrada
-    for i in range(len(coordenadas_x)):
-        x1 = coordenadas_x[i]
-        y1 = coordenadas_y[i]
-        x2 = coordenadas_x[(i + 1) % len(coordenadas_x)]
-        y2 = coordenadas_y[(i + 1) % len(coordenadas_y)]
-        ax.plot([x1, x2], [y1, y2], marker="o", color="blue", linewidth=2)
+def es_triangulo_rectangulo(puntos):
+    if len(puntos) != 3:
+        return False
+    
+    distancias = [distancia(puntos[i], puntos[j]) ** 2 for i in range(3) for j in range(i + 1, 3)]
+    distancias.sort()
+    
+    return distancias[0] + distancias[1] == distancias[2]
 
-    # Graficar los puntos individuales y mostrar sus coordenadas
-    for i, punto in enumerate(lista):
-        x, y = punto
-        ax.scatter(x, y, marker="o", color="blue", s=50)
-        ax.annotate(f"({x},{y})", (x, y + 0.1), ha="center", va="bottom", fontsize=8)
-
+def graficar_puntos_y_figuras(puntos, titulo):
+    x, y = zip(*puntos)
+    plt.figure()
+    plt.scatter(x, y)
+    
+    for i, punto in enumerate(puntos):
+        plt.annotate(f'{punto}', (x[i], y[i]))
+    
+    if len(puntos) == 4:
+        if es_cuadrado(puntos) or es_rectangulo(puntos):
+            orden = sorted(puntos, key=lambda p: (p[0], p[1]))
+            plt.plot([orden[0][0], orden[1][0], orden[3][0], orden[2][0], orden[0][0]], 
+                     [orden[0][1], orden[1][1], orden[3][1], orden[2][1], orden[0][1]], 'r')
+            plt.title(titulo)
+    elif len(puntos) == 3 and es_triangulo_rectangulo(puntos):
+        plt.plot([p[0] for p in list(puntos) + [puntos[0]]], [p[1] for p in list(puntos) + [puntos[0]]], 'g')
+        plt.title(titulo)
+    
+    plt.grid(True)
     plt.show()
 
+# Lista de puntos de ejemplo
+listas_puntos = [
+    [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)]
+]
 
-# graficarPuntos(ejemplo_1)
-
-
-#Formula para calcular distancias entre puntos
-def calcularDistancia(x1: int, x2: int, y1: int, y2: int):
-    return ((x2 - x1) ** 2 + (y1 - y2) ** 2) ** 0.5
-
-
-# Funcion para realizar las distancias entre todos los puntos de una lista
-def calcularDistanciasLista(j: int, i: int, lista: list):
-    if j < len(lista):
-        if j != i:
-            print(
-                lista[i],
-                lista[j],
-                calcularDistancia(lista[i][0], lista[j][0], lista[i][1], lista[j][1]),
-            )
-            calcularDistanciasLista(j + 1, i, lista)
+for puntos in listas_puntos:
+    combinaciones = []
+    for r in range(3, 5):
+        combinaciones += list(combinations(puntos, r))
+    
+    for comb in combinaciones:
+        if len(comb) == 4 and (es_cuadrado(comb) or es_rectangulo(comb)):
+            print(f"Los puntos {comb} forman un cuadrado o un rectángulo.")
+            graficar_puntos_y_figuras(comb, "Cuadrado o Rectángulo")
+        elif len(comb) == 3 and es_triangulo_rectangulo(comb):
+            print(f"Los puntos {comb} forman un triángulo rectángulo.")
+            graficar_puntos_y_figuras(comb, "Triángulo Rectángulo")
         else:
-            calcularDistanciasLista(j + 1, i, lista)
-
-# Funcion para recorrer una lista y pasarla a la funcion calculardistaciasLista y las compare con el resto de la lista
-def recorrerLista(i, lista):
-    if i < len(lista):
-        calcularDistanciasLista(0, i, lista)
-        recorrerLista(i + 1, lista)
-
-recorrerLista(0, ejemplo_3)
+            print(f"Los puntos {comb} no forman una figura específica.")
