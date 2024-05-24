@@ -1,5 +1,11 @@
 from distancia import calcularDistancia
 
+# Función para calcular el área de un triángulo rectángulo
+def areaTrianguloRectangulo(puntos):
+    base = calcularDistancia(puntos[0][0], puntos[0][1], puntos[1][0], puntos[1][1])
+    altura = calcularDistancia(puntos[0][0], puntos[0][1], puntos[2][0], puntos[2][1])
+    return 0.5 * base * altura
+
 def esTrianguloRectangulo(puntos):
     if len(puntos) != 3:
         return False
