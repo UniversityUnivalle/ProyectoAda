@@ -1,5 +1,10 @@
 from distancia import calcularDistancia
 
+# Función para calcular el área de un cuadrado
+def areaCuadrado(puntos):
+    lado = calcularDistancia(puntos[0][0], puntos[0][1], puntos[1][0], puntos[1][1])
+    return lado * lado
+
 def esCuadrado(puntos):
     if len(puntos) != 4:
         return False
