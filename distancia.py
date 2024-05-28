@@ -1,12 +1,12 @@
 # Propósito de la Función
-# La función calcularDistancia tiene como objetivo calcular la distancia euclidiana entre dos puntos en un plano cartesiano bidimensional.
+# La función calcularDistancia tiene como objetivo calcular la distancia euclidiana entre dos puntos en un plano cartesiano bidimensional
 # Los puntos están definidos por sus coordenadas (x1, y1) (x2, y2).
 
-# La función devuelve la distancia entre los dos puntos.
+# La función devuelve la distancia entre los dos puntos
 
 # Parámetros de Entrada
-# x1, y1: Coordenadas del primer punto.
-# x2, y2: Coordenadas del segundo punto.
+# x1, y1: Coordenadas del primer punto
+# x2, y2: Coordenadas del segundo punto
 
 def calcularDistancia(x1, y1, x2, y2):
     distancia = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5

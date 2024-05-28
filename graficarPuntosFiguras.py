@@ -52,7 +52,7 @@ def graficarTodosLosPuntos(arrayListas):
 
 
 
-# alternativa anterios....
+# alternativa anterior....
 
 # Función recursiva para generar combinaciones de puntos
 # def generarCombinaciones(puntos, combinacionActual, longitudDeseada, indiceInicio, combinaciones):
