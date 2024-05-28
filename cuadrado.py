@@ -1,5 +1,4 @@
-from distancia import calcularDistancia
-from calcularDistanciaRecursivo import calcularDistanciasRecursivo
+from calcularDistanciaRecursivo import calcularDistanciasRecursivo,calcularDistancia
 
 
 # Propósito:
