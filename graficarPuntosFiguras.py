@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from cuadrado import esCuadrado
 from rectangulo import esRectangulo
 from trianguloRectangulo import esTrianguloRectangulo
+from arbol import agregarFiguraAlArbol
 
 
 # Función para graficar puntos y figuras en un plano cartesiano
@@ -50,6 +51,18 @@ def graficarTodosLosPuntos(arrayListas):
     plt.grid(True)
     plt.show()
 
+def procesarFigura(tipo, comb, area, listaFiguras):
+    identificador = f"{tipo}_{len(listaFiguras) + 1}"
+    figura = {
+        "identificador": identificador,
+        "tipo": tipo,
+        "puntos": comb,
+        "area": area
+    }
+    listaFiguras.append(figura)
+    agregarFiguraAlArbol(figura)
+    print(f"Los puntos {comb} forman un {tipo} con área {area}.")
+    graficarPuntosYFiguras(comb, tipo)
 
 
 # alternativa anterior....

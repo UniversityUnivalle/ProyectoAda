@@ -3,8 +3,8 @@ from trianguloRectangulo import esTrianguloRectangulo, areaTrianguloRectangulo
 from cuadrado import esCuadrado, areaCuadrado
 from rectangulo import esRectangulo, areaRectangulo
 from combinaciones import obtenerCombinaciones
-from graficarPuntosFiguras import graficarPuntosYFiguras, graficarTodosLosPuntos
-from arbol import agregarFiguraAlArbol, arbolFiguras
+from graficarPuntosFiguras import graficarTodosLosPuntos,procesarFigura
+from arbol import arbolFiguras
 
 arrayListas = [
     [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)],
@@ -21,18 +21,6 @@ triangulosRectangulos = []
 cuadrados = []
 rectangulos = []
 
-def procesarFigura(tipo, comb, area, listaFiguras):
-    identificador = f"{tipo}_{len(listaFiguras) + 1}"
-    figura = {
-        "identificador": identificador,
-        "tipo": tipo,
-        "puntos": comb,
-        "area": area
-    }
-    listaFiguras.append(figura)
-    agregarFiguraAlArbol(figura)
-    print(f"Los puntos {comb} forman un {tipo} con área {area}.")
-    graficarPuntosYFiguras(comb, tipo)
 
 # Para cada lista válida de puntos
 for lista in listasValidas:
