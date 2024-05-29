@@ -34,4 +34,6 @@ def esCuadrado(puntos):
     distancias = calcularDistanciasRecursivo(puntos)
 
     distancias.sort()
-    return distancias[0] == distancias[1] == distancias[2] == distancias[3]
+ # Cuadrado tiene 4 lados iguales y 2 diagonales iguales
+    return (distancias[0] == distancias[1] == distancias[2] == distancias[3] and 
+            distancias[4] == distancias[5])

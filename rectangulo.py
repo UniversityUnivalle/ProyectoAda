@@ -36,4 +36,6 @@ def esRectangulo(puntos):
     distancias = calcularDistanciasRecursivo(puntos)
 
     distancias.sort()
-    return distancias[0] == distancias[1] and distancias[2] == distancias[3]
+    # Rectángulo tiene 2 pares de lados iguales y 2 diagonales iguales
+    return (distancias[0] == distancias[1] and distancias[2] == distancias[3] and 
+            distancias[4] == distancias[5])
