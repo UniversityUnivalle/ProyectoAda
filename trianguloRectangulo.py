@@ -1,4 +1,5 @@
 from calcularDistanciaRecursivo import calcularDistanciasRecursivo,calcularDistancia
+from mySort import quickSortPersonalizado
 
 def areaTrianguloRectangulo(puntos):
     base = calcularDistancia(puntos[0][0], puntos[0][1], puntos[1][0], puntos[1][1])
@@ -18,5 +19,6 @@ def esTrianguloRectangulo(puntos):
     distancias = calcularDistanciasRecursivo(puntos)
     distancias = elevarDistanciasCuadrado(distancias)
 
-    distancias.sort()
+    distancias = quickSortPersonalizado(distancias)
+    
     return distancias[0] + distancias[1] == distancias[2]
