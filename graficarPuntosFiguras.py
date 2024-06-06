@@ -64,17 +64,3 @@ def procesarFigura(tipo, comb, area, listaFiguras):
     print(f"Los puntos {comb} forman un {tipo} con área {area}.")
     graficarPuntosYFiguras(comb, tipo)
 
-
-# alternativa anterior....
-
-# Función recursiva para generar combinaciones de puntos
-# def generarCombinaciones(puntos, combinacionActual, longitudDeseada, indiceInicio, combinaciones):
-#     # Si la combinación actual tiene la longitud deseada, agregarla a la lista de combinaciones
-#     if len(combinacionActual) == longitudDeseada:
-#         combinaciones.append(combinacionActual[:]) #combinacionActual[:] -> Agrega una copia de la combinación actual 
-#         return
-#     # Iterar a partir del índice de inicio para generar combinaciones
-#     for i in range(indiceInicio, len(puntos)):
-#         combinacionActual.append(puntos[i]) # Agregar el punto actual a la combinación
-#         generarCombinaciones(puntos, combinacionActual, longitudDeseada, i + 1, combinaciones) # Llamada recursiva
-#         combinacionActual.pop() # Eliminar el último punto para probar otra combinación
