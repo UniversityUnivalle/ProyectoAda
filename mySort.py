@@ -10,7 +10,7 @@ def quickSortPersonalizado(arreglo):
     def particion(arreglo, pivote, izquierda, medio, derecha, index=0):
         if index == len(arreglo):
             return izquierda, medio, derecha
-
+        
         if arreglo[index] < pivote:
             izquierda.append(arreglo[index])
         elif arreglo[index] > pivote:
