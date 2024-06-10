@@ -7,10 +7,7 @@ from graficarPuntosFiguras import graficarTodosLosPuntos,procesarFigura
 from arbol import arbolFiguras
 
 arrayListas = [
-    [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)],
-    [(3, 20), (1, 9), (4, 5), (3, 2), (15, 2), (-4, 0), (7, -5)],
-    [(1, 1), (1, 4), (4, 1), (4, 4)],
-    [(1, 0), (3, 5)]
+    [(1, 1), (1, 4), (4, 1), (4, 4)]
 ]
 
 # Verificar las listas
