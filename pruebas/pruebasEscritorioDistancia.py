@@ -3,9 +3,9 @@ def calcularDistancia(x1, y1, x2, y2):
   return distancia
 
 print("Prueba de distancia")
-x1 = 1
-y1 = 2
-x2 = 3
+x1 = 4
+y1 = 1
+x2 = 4
 y2 = 4
 
 distancia = calcularDistancia(x1, y1, x2, y2)
@@ -25,7 +25,7 @@ def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
 
   return calcularDistanciasRecursivo(puntos, i, j + 1, distancias)
 
-puntos = [(1, 2), (3, 4), (5, 6)]
+puntos = [(1, 1), (1, 4), (4, 1), (4, 4)]
 print("Calculando distancia de n pares de listas")
 distancias = calcularDistanciasRecursivo(puntos)
 print(distancias)
