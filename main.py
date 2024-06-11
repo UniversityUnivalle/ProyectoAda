@@ -3,11 +3,11 @@ from trianguloRectangulo import esTrianguloRectangulo, areaTrianguloRectangulo
 from cuadrado import esCuadrado, areaCuadrado
 from rectangulo import esRectangulo, areaRectangulo
 from combinaciones import obtenerCombinaciones
-from graficarPuntosFiguras import graficarTodosLosPuntos,procesarFigura
+from graficarPuntosFiguras import graficarTodosLosPuntos,procesarFigura,graficarTodasLasFiguras
 from arbol import arbolFiguras
 
 arrayListas = [
-    [(1, 1), (1, 4), (4, 1), (4, 4)]
+    [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)]
 ]
 
 # Verificar las listas
@@ -17,6 +17,7 @@ listasValidas = verificarListas(arrayListas)
 triangulosRectangulos = []
 cuadrados = []
 rectangulos = []
+todasLasFiguras = []
 
 
 # Para cada lista válida de puntos
@@ -31,11 +32,11 @@ for lista in listasValidas:
     for comb in combinaciones:
         if len(comb) == 4:
             if esCuadrado(comb):
-                procesarFigura("Cuadrado", comb, areaCuadrado(comb), cuadrados)
+                procesarFigura("Cuadrado", comb, areaCuadrado(comb), cuadrados, todasLasFiguras)
             elif esRectangulo(comb):
-                procesarFigura("Rectángulo", comb, areaRectangulo(comb), rectangulos)
+                procesarFigura("Rectángulo", comb, areaRectangulo(comb), rectangulos, todasLasFiguras)
         elif len(comb) == 3 and esTrianguloRectangulo(comb):
-            procesarFigura("Triángulo Rectángulo", comb, areaTrianguloRectangulo(comb), triangulosRectangulos)
+            procesarFigura("Triángulo Rectángulo", comb, areaTrianguloRectangulo(comb), triangulosRectangulos, todasLasFiguras)
         else:
             print(f"Los puntos {comb} no forman una figura específica.")
 
@@ -49,6 +50,9 @@ arbolFiguras.imprimirArbol()
 
 # Graficar todos los puntos existentes del arrayListas
 graficarTodosLosPuntos(arrayListas)
+
+# Graficar todas las figuras encontradas
+graficarTodasLasFiguras(todasLasFiguras, "Todas las Figuras")
 
 # Imprimir el conteo de figuras encontradas
 print(f"Triángulos rectángulos encontrados: {len(triangulosRectangulos)}")
