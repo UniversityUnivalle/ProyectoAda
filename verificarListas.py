@@ -10,6 +10,6 @@ def verificarListas(arrayListas, i=0, listasValidas=None):
     if len(lista) >= 3:
         listasValidas.append(lista)
     else:
-        print(f"Lista {lista} no tiene suficientes puntos.")
+        print(f"La lista {lista} no tiene suficientes puntos.")
 
     return verificarListas(arrayListas, i + 1, listasValidas)

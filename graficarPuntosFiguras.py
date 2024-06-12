@@ -52,8 +52,9 @@ def graficarTodosLosPuntos(arrayListas):
 
 # Función para graficar todas las figuras en un solo plano cartesiano
 def graficarTodasLasFiguras(figuras, titulo):
-    # plt.figure()  # Crear una nueva figura para graficar
-    plt.figure(figsize=(4, 6))
+    plt.figure()  # Crear una nueva figura para graficar
+    # plt.figure(figsize=(4, 6))
+
     for figura in figuras:
         puntos = figura['puntos']
         tipo = figura['tipo']
@@ -100,3 +101,4 @@ def procesarFigura(tipo, comb, area, listaFiguras, todasLasFiguras):
     todasLasFiguras.append(figura)
     agregarFiguraAlArbol(figura)
     print(f"Los puntos {comb} forman un {tipo} con área {area}.")
+    

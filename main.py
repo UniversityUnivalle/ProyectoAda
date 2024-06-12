@@ -3,11 +3,13 @@ from trianguloRectangulo import esTrianguloRectangulo, areaTrianguloRectangulo
 from cuadrado import esCuadrado, areaCuadrado
 from rectangulo import esRectangulo, areaRectangulo
 from combinaciones import obtenerCombinaciones
-from graficarPuntosFiguras import graficarTodosLosPuntos,procesarFigura,graficarTodasLasFiguras
+from graficarPuntosFiguras import graficarTodosLosPuntos, procesarFigura, graficarTodasLasFiguras
 from arbol import arbolFiguras
 
 arrayListas = [
-    [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)]
+    [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)],
+    [(1, 4), (5, 1)],
+    [(1, 4), (5, 1), (9, 1)]
 ]
 
 # Verificar las listas
@@ -18,7 +20,6 @@ triangulosRectangulos = []
 cuadrados = []
 rectangulos = []
 todasLasFiguras = []
-
 
 # Para cada lista válida de puntos
 for lista in listasValidas:
@@ -49,12 +50,16 @@ print("Imprimiendo árbol de figuras:")
 arbolFiguras.imprimirArbol()
 
 # Graficar todos los puntos existentes del arrayListas
-graficarTodosLosPuntos(arrayListas)
+# graficarTodosLosPuntos(arrayListas)
 
 # Graficar todas las figuras encontradas
-graficarTodasLasFiguras(todasLasFiguras, "Todas las Figuras")
+# graficarTodasLasFiguras(todasLasFiguras, "Todas las Figuras")
+
+# Graficar el árbol de figuras
+arbolFiguras.graficarArbol()
 
 # Imprimir el conteo de figuras encontradas
 print(f"Triángulos rectángulos encontrados: {len(triangulosRectangulos)}")
 print(f"Cuadrados encontrados: {len(cuadrados)}")
 print(f"Rectángulos encontrados: {len(rectangulos)}")
+
