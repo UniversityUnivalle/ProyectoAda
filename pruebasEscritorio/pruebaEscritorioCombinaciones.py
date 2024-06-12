@@ -47,7 +47,8 @@ def eliminarUltimoLista(lista, i=0, nuevaLista=None):
     eliminarUltimoLista(lista, i + 1, nuevaLista)
 
 # Ejemplo de uso
-puntos = ['A', 'B', 'C', 'D']
+# puntos = [(2, 3), (1, 0), (1, 3), (9, 9)]
+puntos = [ 'A', 'B', 'C', 'D']
 longitudDeseada = 2
 combinaciones = obtenerCombinaciones(puntos, longitudDeseada)
 print("Combinaciones obtenidas:", combinaciones)
