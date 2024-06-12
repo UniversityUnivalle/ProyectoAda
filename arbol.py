@@ -48,7 +48,7 @@ class ArbolFiguras:
         grafo = nx.DiGraph()
         self.raiz.agregarNodosAGrafo(grafo)
 
-        pos = self.hierarchy_pos(grafo, self.raiz.identificador)
+        pos = self.jerarquia(grafo, self.raiz.identificador)
         plt.figure(figsize=(12, 8))
 
         nx.draw(grafo, pos, with_labels=True, node_size=3000, node_color="skyblue", font_size=10, font_weight="bold", edge_color="gray")
@@ -60,11 +60,11 @@ class ArbolFiguras:
         plt.title("Árbol de Figuras Geométricas")
         plt.show()
 
-    def hierarchy_pos(self, G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5):
-        pos = _hierarchy_pos(G, root, width, vert_gap, vert_loc, xcenter)
+    def jerarquia(self, G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5):
+        pos = _jerarquia(G, root, width, vert_gap, vert_loc, xcenter)
         return pos
 
-def _hierarchy_pos(G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5, pos=None, parent=None, parsed=[]):
+def _jerarquia(G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5, pos=None, parent=None, parsed=[]):
     if pos is None:
         pos = {root: (xcenter, vert_loc)}
     else:
@@ -79,7 +79,7 @@ def _hierarchy_pos(G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5, pos
         nextx = xcenter - width/2 - dx/2
         for child in children:
             nextx += dx
-            pos = _hierarchy_pos(G, child, width=dx, vert_gap=vert_gap, vert_loc=vert_loc-vert_gap, xcenter=nextx, pos=pos, parent=root, parsed=parsed)
+            pos = _jerarquia(G, child, width=dx, vert_gap=vert_gap, vert_loc=vert_loc-vert_gap, xcenter=nextx, pos=pos, parent=root, parsed=parsed)
             
     return pos
 
