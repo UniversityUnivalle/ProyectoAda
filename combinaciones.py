@@ -32,12 +32,14 @@ def obtenerCombinaciones(puntos, longitudDeseada):
     generarCombinaciones(puntos, [], longitudDeseada, 0, combinaciones)
     return combinaciones
 
+def eliminarUltimoLista(lista, i=0, nuevaLista=None):
+    if nuevaLista is None:  
+        nuevaLista = []
 
-# def eliminarUltimoLista(lista): #Funcion que va a recibir la lista
-#     nuevaLista = [] #Crea una lista nueva
+    if i == len(lista) - 1:
+        lista[:] = nuevaLista
+        return
+    
+    nuevaLista.append(lista[i])
 
-#     for i in range (len(lista) -1): #Recorrer el tamano de la lista menos el ultimo elemento
-#         nuevaLista.append(lista [i]) #Cada elemento que se recorre se agrega a la nueva lista
-
-#     lista[:] = nuevaLista #Se modifica la lista original, agregando los elementos de la nueva lista 
-#                             # = elementos menos el ultimo
+    eliminarUltimoLista(lista, i + 1, nuevaLista)
