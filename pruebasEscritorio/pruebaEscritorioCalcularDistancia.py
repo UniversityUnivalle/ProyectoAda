@@ -1,3 +1,5 @@
+enter = "Presiona Enter para continuar..."
+
 def calcularDistancia(x1, y1, x2, y2):
     distancia = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
     return distancia
@@ -9,18 +11,18 @@ def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
     print(f"\nLlamada recursiva: i = {i}, j = {j}")
     print(f"Puntos: {puntos}")
     print(f"Distancias acumuladas hasta ahora: {distancias}")
-    input("Presiona Enter para continuar...")
+    input(enter)
 
     if i >= len(puntos) - 1:
         print(f"i ({i}) >= len(puntos) - 1 ({len(puntos) - 1})")
         print(f"Retornando distancias acumuladas: {distancias}")
-        input("Presiona Enter para continuar...")
+        input(enter)
         return distancias
 
     if j >= len(puntos):
         print(f"j ({j}) >= len(puntos) ({len(puntos)})")
         print(f"Siguiente iteración: i = {i + 1}, j = {i + 2}")
-        input("Presiona Enter para continuar...")
+        input(enter)
         return calcularDistanciasRecursivo(puntos, i + 1, i + 2, distancias)
 
     punto1 = puntos[i]
@@ -31,7 +33,7 @@ def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
     print(f"Calculando distancia entre {punto1} y {punto2}")
     print(f"Distancia calculada: {distancia}")
     print(f"Distancias acumuladas: {distancias}")
-    input("Presiona Enter para continuar...")
+    input(enter)
 
     return calcularDistanciasRecursivo(puntos, i, j + 1, distancias)
 

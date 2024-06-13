@@ -1,7 +1,10 @@
+enter = "Presiona Enter para continuar..."
+
+
 def quickSortPersonalizado(arreglo):
     print("Arreglo:", arreglo)
     print("len(arreglo) <= 1:", len(arreglo) <= 1)
-    input("Enter...")
+    input(enter)
     if len(arreglo) <= 1:
         print("return:", arreglo)
         return arreglo
@@ -12,13 +15,13 @@ def quickSortPersonalizado(arreglo):
     derecha = []
 
     print("Pivote:", pivote)
-    input("Enter...")
+    input(enter)
     print("izquierda:", izquierda)
-    input("Enter...")
+    input(enter)
     print("medio:", medio)
-    input("Enter...")
+    input(enter)
     print("derecha:", derecha)
-    input("Enter...")
+    input(enter)
 
     def particion(arreglo, pivote, izquierda, medio, derecha, index=0):
         print(
@@ -35,29 +38,29 @@ def quickSortPersonalizado(arreglo):
             "i:",
             index,
         )
-        input("Enter...")
+        input(enter)
         print("index == len(arreglo):", index == len(arreglo))
-        input("Enter...")
+        input(enter)
         if index == len(arreglo):
             print("izquierda:", izquierda, "medio:", medio, "derecha:", derecha)
-            input("Enter...")
+            input(enter)
             return izquierda, medio, derecha
 
         print("arreglo[index] < pivote:", arreglo[index] < pivote)
         print("arreglo[index] > pivote:", arreglo[index] > pivote)
-        input("Enter...")
+        input(enter)
         if arreglo[index] < pivote:
             izquierda.append(arreglo[index])
             print("izquierda.append(arreglo[index]):", izquierda)
-            input("Enter...")
+            input(enter)
         elif arreglo[index] > pivote:
             derecha.append(arreglo[index])
             print("derecha.append(arreglo[index]):", derecha)
-            input("Enter...")
+            input(enter)
         else:
             medio.append(arreglo[index])
             print("medio.append(arreglo[index]):", medio)
-            input("Enter...")
+            input(enter)
 
         print(
             "return -> arreglo:",
@@ -73,10 +76,10 @@ def quickSortPersonalizado(arreglo):
             "i:",
             index + 1,
         )
-        input("Enter...")
+        input(enter)
         return particion(arreglo, pivote, izquierda, medio, derecha, index + 1)
 
-    input("Enter...")
+    input(enter)
     izquierda, medio, derecha = particion(arreglo, pivote, izquierda, medio, derecha)
     print(
         "izquierda, medio, derecha = particion(arreglo, pivote, izquierda, medio, derecha)\n",
@@ -87,7 +90,7 @@ def quickSortPersonalizado(arreglo):
         "derecha:",
         derecha,
     )
-    input("Enter...")
+    input(enter)
     return quickSortPersonalizado(izquierda) + medio + quickSortPersonalizado(derecha)
 
 

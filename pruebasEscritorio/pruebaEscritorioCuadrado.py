@@ -8,36 +8,39 @@ sys.path.append(projectRoot)
 from calcularDistanciaRecursivo import calcularDistanciasRecursivo, calcularDistancia
 from mySort import quickSortPersonalizado
 
+enter = "Presiona Enter para continuar..."
+
+
 def areaCuadrado(puntos):
     print("Calculando el área del cuadrado con puntos:", puntos)
-    input("Enter...")
+    input(enter)
     lado = calcularDistancia(puntos[0][0], puntos[0][1], puntos[1][0], puntos[1][1])
     print("Lado del cuadrado calculado:", lado)
-    input("Enter...")
+    input(enter)
     area = lado * lado
     print("Área del cuadrado calculada:", area)
-    input("Enter...")
+    input(enter)
     return area
 
 def esCuadrado(puntos):
     print("Verificando si los puntos forman un cuadrado:", puntos)
-    input("Enter...")
+    input(enter)
     if len(puntos) != 4:
         print("No es un cuadrado: la cantidad de puntos no es 4")
         return False
 
     distancias = calcularDistanciasRecursivo(puntos)
     print("Distancias calculadas entre los puntos:", distancias)
-    input("Enter...")
+    input(enter)
 
     distancias = quickSortPersonalizado(distancias)
     print("Distancias ordenadas:", distancias)
-    input("Enter...")
+    input(enter)
 
     es_cuadrado = (distancias[0] == distancias[1] == distancias[2] == distancias[3] and 
                    distancias[4] == distancias[5])
     print("¿Es cuadrado?", es_cuadrado)
-    input("Enter...")
+    input(enter)
 
     return es_cuadrado
 
