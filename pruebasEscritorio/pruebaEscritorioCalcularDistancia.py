@@ -11,6 +11,7 @@ def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
     print(f"\nLlamada recursiva: i = {i}, j = {j}")
     print(f"Puntos: {puntos}")
     print(f"Distancias acumuladas hasta ahora: {distancias}")
+    print(f"------------------------------------")
     input(enter)
 
     if i >= len(puntos) - 1:
@@ -31,6 +32,7 @@ def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
     distancias.append(distancia)
 
     print(f"Calculando distancia entre {punto1} y {punto2}")
+    print(f"Se agrega distancias calculadas entre {punto1} y {punto2} = {distancia} al array de => distancias {distancias}")
     print(f"Distancia calculada: {distancia}")
     print(f"Distancias acumuladas: {distancias}")
     input(enter)

@@ -37,12 +37,12 @@ def esCuadrado(puntos):
     print("Distancias ordenadas:", distancias)
     input(enter)
 
-    es_cuadrado = (distancias[0] == distancias[1] == distancias[2] == distancias[3] and 
+    esCuadrado = (distancias[0] == distancias[1] == distancias[2] == distancias[3] and 
                    distancias[4] == distancias[5])
-    print("¿Es cuadrado?", es_cuadrado)
+    print("¿Es cuadrado?", esCuadrado)
     input(enter)
 
-    return es_cuadrado
+    return esCuadrado
 
 # Ejemplo de prueba
 puntos = [(0, 0), (1, 0), (1, 1), (0, 1)]
