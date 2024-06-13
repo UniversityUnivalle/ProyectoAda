@@ -18,6 +18,7 @@ def esTrianguloR(p1, p2, p3):
     # Verifica si se cumple el teorema de Pitágoras con una tolerancia pequeña para manejar errores de precisión
     return abs(lados[2]**2 - (lados[0]**2 + lados[1]**2)) < 0.000000001 #1×10^-9 o -> 1e-9
 
+
 # Lista de puntos en el plano cartesiano
 puntos = [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)]
 
