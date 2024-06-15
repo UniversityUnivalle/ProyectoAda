@@ -1,5 +1,5 @@
 Arreglo: [1, 1, 2, 3, 6, 8, 10] 
-ITERACIONES    ARREGLO                 len(arreglo) <= 1    PIVOTE    IZQUIERDA    MEDIO    DERACHA     INDEX    index == len(arreglo)    arreglo[index] < pivote    arreglo[index] > pivote    else
+ITERACIONES    ARREGLO                 len(arreglo) <= 1    PIVOTE    IZQUIERDA    MEDIO    DERECHA     INDEX    index == len(arreglo)    arreglo[index] < pivote    arreglo[index] > pivote    else
 -------------  ----------------------  -------------------  --------  -----------  -------  ----------  -------  -----------------------  -------------------------  -------------------------  ------
 0              [3, 6, 8, 10, 1, 2, 1]  False
                                                             3         []           []       []
@@ -8,19 +8,19 @@ ITERACIONES    ARREGLO                 len(arreglo) <= 1    PIVOTE    IZQUIERDA 
                                                                                    [3]
                                                                                                         1        False
                                                                                                                                           False                      True                       False
-                                                                                            [6, 8, 10]
+                                                                                            [6]
                                                                                                         2        False
                                                                                                                                           False                      True                       False
-                                                                                            [6, 8, 10]
+                                                                                            [6, 8]
                                                                                                         3        False
                                                                                                                                           False                      True                       False
                                                                                             [6, 8, 10]
                                                                                                         4        False
                                                                                                                                           True                       False                      False
-                                                                      [1, 2, 1]
+                                                                      [1]
                                                                                                         5        False
                                                                                                                                           True                       False                      False
-                                                                      [1, 2, 1]
+                                                                      [1, 2]
                                                                                                         6        False
                                                                                                                                           True                       False                      False
                                                                       [1, 2, 1]
@@ -30,7 +30,7 @@ ITERACIONES    ARREGLO                 len(arreglo) <= 1    PIVOTE    IZQUIERDA 
                                                             1         []           []       []
                                                                                                         0        False
                                                                                                                                           False                      False                      True
-                                                                                   [1, 1]
+                                                                                   [1]
                                                                                                         1        False
                                                                                                                                           False                      True                       False
                                                                                             [2]
@@ -50,7 +50,7 @@ ITERACIONES    ARREGLO                 len(arreglo) <= 1    PIVOTE    IZQUIERDA 
                                                                                    [6]
                                                                                                         1        False
                                                                                                                                           False                      True                       False
-                                                                                            [8, 10]
+                                                                                            [8]
                                                                                                         2        False
                                                                                                                                           False                      True                       False
                                                                                             [8, 10]

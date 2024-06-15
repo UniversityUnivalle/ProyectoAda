@@ -27,7 +27,7 @@ class NodoFigura:
 
 class ArbolFiguras:
     def __init__(self):
-        self.raiz = NodoFigura("Raiz", "Raiz", [], 0)
+        self.raiz = NodoFigura("Figuras Lista n", " ", [], 0)
         self.tipos = {
             "Triángulo Rectángulo": NodoFigura("Triángulos Rectángulos", "Tipo", [], 0),
             "Cuadrado": NodoFigura("Cuadrados", "Tipo", [], 0),
@@ -48,8 +48,13 @@ class ArbolFiguras:
         grafo = nx.DiGraph()
         self.raiz.agregarNodosAGrafo(grafo)
 
+        print(grafo)
+        print(self.raiz.identificador)
+
         pos = self.jerarquia(grafo, self.raiz.identificador)
         plt.figure(figsize=(12, 8))
+
+        print("POS:", pos)
 
         nx.draw(grafo, pos, with_labels=True, node_size=3000, node_color="skyblue", font_size=10, font_weight="bold", edge_color="gray")
 

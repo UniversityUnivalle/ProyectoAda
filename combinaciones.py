@@ -32,14 +32,3 @@ def obtenerCombinaciones(puntos, longitudDeseada):
     generarCombinaciones(puntos, [], longitudDeseada, 0, combinaciones)
     return combinaciones
 
-def eliminarUltimoLista(lista, i=0, nuevaLista=None):
-    if nuevaLista is None:  
-        nuevaLista = []
-
-    if i == len(lista) - 1:
-        lista[:] = nuevaLista
-        return
-    
-    nuevaLista.append(lista[i])
-
-    eliminarUltimoLista(lista, i + 1, nuevaLista)

@@ -1,3 +1,4 @@
+from GenerarTxt import GenerarText
 from tabulate import tabulate
 import os
 
@@ -8,7 +9,7 @@ headersQuickSortPerzonalizado = [
     "PIVOTE",
     "IZQUIERDA",
     "MEDIO",
-    "DERACHA",
+    "DERECHA",
     "INDEX",
     "index == len(arreglo)",
     "arreglo[index] < pivote",
@@ -51,26 +52,29 @@ def quickSortPersonalizado(arreglo, i):
             input("Presione Enter Para Continuar..")
             return izquierda, medio, derecha
         os.system('cls')
-        elseMesio =  not(((arreglo[index] < pivote) == True) or ((arreglo[index] > pivote) == True) == True)
-        resultadosQuickSortPerzonalizado.append(["", "", "", "", "", "", "", "", "", arreglo[index] < pivote, arreglo[index] > pivote, elseMesio])
+        elseMedio =  not(((arreglo[index] < pivote) == True) or ((arreglo[index] > pivote) == True) == True)
+        resultadosQuickSortPerzonalizado.append(["", "", "", "", "", "", "", "", "", arreglo[index] < pivote, arreglo[index] > pivote, elseMedio])
         print(tabulate(resultadosQuickSortPerzonalizado, headersQuickSortPerzonalizado))
         input("Presione Enter Para Continuar..")
         if arreglo[index] < pivote:
             izquierda.append(arreglo[index])
             os.system('cls')
-            resultadosQuickSortPerzonalizado.append(["", "", "", "", izquierda, "", "", "", "", "", "", ""])
+            izz = izquierda[:]
+            resultadosQuickSortPerzonalizado.append(["", "", "", "", izz, "", "", "", "", "", "", ""])
             print(tabulate(resultadosQuickSortPerzonalizado, headersQuickSortPerzonalizado))
             input("Presione Enter Para Continuar..")
         elif arreglo[index] > pivote:
             derecha.append(arreglo[index])
             os.system('cls')
-            resultadosQuickSortPerzonalizado.append(["", "", "", "", "", "", derecha, "", "", "", "", ""])
+            dee = derecha[:]
+            resultadosQuickSortPerzonalizado.append(["", "", "", "", "", "", dee, "", "", "", "", ""])
             print(tabulate(resultadosQuickSortPerzonalizado, headersQuickSortPerzonalizado))
             input("Presione Enter Para Continuar..")
         else:
             medio.append(arreglo[index])
             os.system('cls')
-            resultadosQuickSortPerzonalizado.append(["", "", "", "", "", medio, "", "", "", "", "", ""])
+            mee = medio[:]
+            resultadosQuickSortPerzonalizado.append(["", "", "", "", "", mee, "", "", "", "", "", ""])
             print(tabulate(resultadosQuickSortPerzonalizado, headersQuickSortPerzonalizado))
             input("Presione Enter Para Continuar..")
 
@@ -80,11 +84,5 @@ def quickSortPersonalizado(arreglo, i):
     
     return quickSortPersonalizado(izquierda, i+1) + medio + quickSortPersonalizado(derecha, i+1)
 
-def GenerarText(tabla, arreglo):
-    with open("PruebaEscritorioQuickSortPerzonalizado.txt", "w") as file:
-        file.write(f"Arreglo: {arreglo} \n")
-        file.write(f"{tabla}\n")
-        file.write(f"Resultado: {arreglo}")
-
 arreglo = quickSortPersonalizado([3, 6, 8, 10, 1, 2, 1], 0)
-GenerarText(tabulate(resultadosQuickSortPerzonalizado, headersQuickSortPerzonalizado), arreglo)
+GenerarText(tabulate(resultadosQuickSortPerzonalizado, headersQuickSortPerzonalizado), arreglo, "PruebaEscritorioQuickSortPerzonalizado", arreglo)
