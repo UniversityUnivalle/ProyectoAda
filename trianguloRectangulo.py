@@ -2,9 +2,21 @@ from calcularDistanciaRecursivo import calcularDistanciasRecursivo,calcularDista
 from mySort import quickSortPersonalizado
 
 def areaTrianguloRectangulo(puntos):
-    base = calcularDistancia(puntos[0][0], puntos[0][1], puntos[1][0], puntos[1][1])
-    altura = calcularDistancia(puntos[0][0], puntos[0][1], puntos[2][0], puntos[2][1])
-    return 0.5 * base * altura
+    # base = calcularDistancia(puntos[0][0], puntos[0][1], puntos[1][0], puntos[1][1])
+    # altura = calcularDistancia(puntos[0][0], puntos[0][1], puntos[2][0], puntos[2][1])
+
+    xp1 = puntos[0] [0]
+    yp1 = puntos[0] [1]
+    xp2 = puntos[1] [0]
+    yp2 = puntos[1] [1]
+    xp3 = puntos[2] [0]
+    yp3 = puntos[2] [1]
+
+    area = 0.5 * abs((xp1 * (yp2 - yp3) ) + (xp2 * (yp3 - yp1)) + (xp3 * (yp1 - yp2)))
+
+    return area
+
+    # return 0.5 * base * altura
 
 def elevarDistanciasCuadrado(distancias, index=0):
     if index >= len(distancias):
@@ -22,7 +34,7 @@ def elevarDistanciasCuadrado(distancias, index=0):
 #     distancias = quickSortPersonalizado(distancias)
     
 #     return distancias[0] + distancias[1] == distancias[2]
-
+    
 
 def esTrianguloRectangulo(puntos):
     if len(puntos) != 3:
@@ -36,7 +48,8 @@ def esTrianguloRectangulo(puntos):
     return abs(distanciasCuadrado[2] - (distanciasCuadrado[0] + distanciasCuadrado[1])) < 0.000000001 #1×10^-9 o -> 1e-9
 
 
- # a, b, c = distanciasCuadrado[0], distanciasCuadrado[1], distanciasCuadrado[2]
+
+ #  a, b, c = distanciasCuadrado[0], distanciasCuadrado[1], distanciasCuadrado[2]
 
     # corregirErrorPrecision = 0.000000001
     
