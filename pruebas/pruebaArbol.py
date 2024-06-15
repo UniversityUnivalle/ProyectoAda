@@ -2,11 +2,9 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 class NodoFigura:
-    def __init__(self, identificador, tipo, puntos, area):
+    def __init__(self, identificador, etiqueta):
         self.identificador = identificador
-        self.tipo = tipo
-        self.puntos = puntos
-        self.area = area
+        self.etiqueta = etiqueta
         self.hijos = []
 
     def agregarHijo(self, nodoHijo):
@@ -14,35 +12,34 @@ class NodoFigura:
 
     def imprimirArbol(self, nivel=0):
         indentacion = "  " * nivel
-        print(f"{indentacion}Figura: {self.identificador}, Tipo: {self.tipo}, Área: {self.area}, Puntos: {self.puntos}")
+        print(f"{indentacion}{self.etiqueta}")
         for hijo in self.hijos:
             hijo.imprimirArbol(nivel + 1)
 
     def agregarNodosAGrafo(self, grafo, nivel=0):
-        etiqueta = f"{self.tipo}\n{self.area}\n{self.puntos}"
-        grafo.add_node(self.identificador, etiqueta=etiqueta, subset=nivel)
+        grafo.add_node(self.identificador, etiqueta=self.etiqueta, subset=nivel)
         for hijo in self.hijos:
             hijo.agregarNodosAGrafo(grafo, nivel + 1)
             grafo.add_edge(self.identificador, hijo.identificador)
 
 class ArbolFiguras:
-    def __init__(self):
-        self.raiz = NodoFigura("Figuras", " ", [], 0)
+    def __init__(self, listasEvaluadas):
+        self.raiz = NodoFigura("Figuras", f"Figuras\nListas Evaluadas:\n{listasEvaluadas}")
         self.tipos = {
-            "Triángulo Rectángulo": NodoFigura("Triángulos Rectángulos", " ", [], 0),
-            "Cuadrado": NodoFigura("Cuadrados", " ", [], 0),
-            "Rectángulo": NodoFigura("Rectángulos", " ", [], 0)
+            "Triángulos": NodoFigura("Triángulos", "Triángulos"),
+            "Cuadrados": NodoFigura("Cuadrados", "Cuadrados"),
+            "Rectángulos": NodoFigura("Rectángulos", "Rectángulos")
         }
         self.raiz.hijos.extend(self.tipos.values())
-    
+
     def agregarFigura(self, figura):
         tipo = figura["tipo"]
         if tipo in self.tipos:
-            area_nodo = NodoFigura(f"{figura['identificador']}", " ", figura['puntos'], figura['area'])
+            nodoArea = NodoFigura(f"{figura['identificador']}_Área", f"Área: {figura['area']}")
             for i, punto in enumerate(figura['puntos']):
-                punto_nodo = NodoFigura(f"{figura['identificador']}_Punto_{i+1}", "Punto", [punto], "")
-                area_nodo.agregarHijo(punto_nodo)
-            self.tipos[tipo].agregarHijo(area_nodo)
+                nodoPunto = NodoFigura(f"{figura['identificador']}_Punto{i+1}", f"Punto {i+1}: {punto}")
+                nodoArea.agregarHijo(nodoPunto)
+            self.tipos[tipo].agregarHijo(nodoArea)
 
     def imprimirArbol(self):
         self.raiz.imprimirArbol()
@@ -54,10 +51,12 @@ class ArbolFiguras:
         pos = self.jerarquia(grafo, self.raiz.identificador)
         plt.figure(figsize=(12, 8))
 
-        nx.draw(grafo, pos, with_labels=True, node_size=4000, node_color="skyblue", font_size=6, font_weight="bold", edge_color="gray")
+        nx.draw(grafo, pos, with_labels=True, node_size=3000, node_color="skyblue", font_size=10, font_weight="bold", edge_color="gray")
 
-        labels = nx.get_node_attributes(grafo, 'etiqueta')
-        nx.draw_networkx_labels(grafo, pos, labels, font_size=8, verticalalignment='center', horizontalalignment='center')
+        etiquetas = nx.get_node_attributes(grafo, 'etiqueta')
+        etiquetas = {k: f"{v}" for k, v in etiquetas.items()}
+
+        nx.draw_networkx_labels(grafo, pos, etiquetas, font_size=8)
         plt.title("Árbol de Figuras Geométricas")
         plt.show()
 
@@ -84,8 +83,26 @@ def _jerarquia(G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5, pos=Non
             
     return pos
 
-# Crear el árbol de figuras
-arbolFiguras = ArbolFiguras()
+# Ejemplo de listas evaluadas
+listasEvaluadas = [
+    [(1, 1), (1, 2), (2, 1), (2, 2)],
+    [(1, 1), (5, 1), (1, -2), (5, -2)]
+]
 
-def agregarFiguraAlArbol(figura):
+# Crear el árbol de figuras
+arbolFiguras = ArbolFiguras(listasEvaluadas)
+
+# Ejemplo de figuras
+figuras = [
+    {"identificador": "Cuadrado1", "tipo": "Cuadrados", "puntos": [(1, 1), (1, 2), (2, 1), (2, 2)], "area": 1.0},
+    {"identificador": "Rectángulo1", "tipo": "Rectángulos", "puntos": [(1, 1), (5, 1), (1, -2), (5, -2)], "area": 12}
+]
+
+for figura in figuras:
     arbolFiguras.agregarFigura(figura)
+
+# Imprimir el árbol
+arbolFiguras.imprimirArbol()
+
+# Graficar el árbol
+arbolFiguras.graficarArbol()

@@ -7,10 +7,10 @@ from graficarPuntosFiguras import graficarTodosLosPuntos, procesarFigura, grafic
 from arbol import arbolFiguras
 
 arrayListas = [
-    [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)],
-    [(1, 1), (1, 2), (2, 1), (2, 2)],
-    [(2, 1), (1, 2), (2, 3), (3, 2)],
-    [(1, 2), (2, 4), (4, 3), (3, 1)]
+    [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)]
+    # [(1, 1), (1, 2), (2, 1), (2, 2)],
+    # [(2, 1), (1, 2), (2, 3), (3, 2)],
+    # [(1, 2), (2, 4), (4, 3), (3, 1)]
 ]
 
 # Verificar las listas
@@ -42,20 +42,16 @@ for lista in listasValidas:
         else:
             print(f"Los puntos {comb} no forman una figura específica.")
 
-# # Imprimir las figuras encontradas y sus áreas
-# for figura in triangulosRectangulos + cuadrados + rectangulos:
-#     print(f"Figura: {figura['identificador']}, Tipo: {figura['tipo']}, Puntos: {figura['puntos']}, Área: {figura['area']}")
-
 print("-----------------------------------------------------------------")
 print("Imprimiendo árbol de figuras:")
 # Imprimir el árbol de figuras
 arbolFiguras.imprimirArbol()
 
 # Graficar todos los puntos existentes del arrayListas
-graficarTodosLosPuntos(arrayListas)
+# graficarTodosLosPuntos(arrayListas)
 
 # Graficar todas las figuras encontradas
-graficarTodasLasFiguras(todasLasFiguras, "Todas las Figuras")
+# graficarTodasLasFiguras(todasLasFiguras, "Todas las Figuras")
 
 # Graficar el árbol de figuras
 arbolFiguras.graficarArbol()
