@@ -29,7 +29,7 @@ def esTrianguloRectangulo(puntos):
     distanciasCuadrado = elevarDistanciasCuadrado(distancias)
     distanciasCuadrado = quickSortPersonalizado(distanciasCuadrado)
     
-    # Verifica si se cumple el teorema de Pitágoras con una tolerancia pequeña para manejar errores de precisión
+    # Verifica si se cumple el teorema de Pitágoras con una tolerancia pequeña para manejar errores de precisión - diferencia absoluta(abs)
     return abs(distanciasCuadrado[2] - (distanciasCuadrado[0] + distanciasCuadrado[1])) < 0.000000001 #1×10^-9 o -> 1e-9
 
 
