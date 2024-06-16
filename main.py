@@ -13,16 +13,13 @@ arrayListas = [
     [(1, 2), (2, 4), (4, 3), (3, 1)]
 ]
 
-# Verificar las listas
 listasValidas = verificarListas(arrayListas)
 
-# Arreglos para almacenar las figuras encontradas
 triangulosRectangulos = []
 cuadrados = []
 rectangulos = []
 todasLasFiguras = []
 
-# Para cada lista válida de puntos
 for lista in listasValidas:
     combinaciones = []
     
@@ -30,7 +27,6 @@ for lista in listasValidas:
     for longitudDeseada in range(3, 5):
         combinaciones += obtenerCombinaciones(lista, longitudDeseada)
 
-    # Verificar cada combinación generada
     for comb in combinaciones:
         if len(comb) == 4:
             if esCuadrado(comb):
@@ -44,16 +40,12 @@ for lista in listasValidas:
 
 print("-----------------------------------------------------------------")
 print("Imprimiendo árbol de figuras:")
-# Imprimir el árbol de figuras
 arbolFiguras.imprimirArbol()
 
-# Graficar todos los puntos existentes del arrayListas
 graficarTodosLosPuntos(arrayListas)
 
-# Graficar todas las figuras encontradas
 graficarTodasLasFiguras(todasLasFiguras, "Todas las Figuras")
 
-# Graficar el árbol de figuras
 arbolFiguras.graficarArbol()
 
 # Imprimir el conteo de figuras encontradas
