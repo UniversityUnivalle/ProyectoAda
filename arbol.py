@@ -14,12 +14,12 @@ class NodoFigura:
 
     def imprimirArbol(self, nivel=0):
         indentacion = "  " * nivel
-        print(f"{indentacion}Figura: {self.identificador}, Tipo: {self.tipo}, Puntos: {self.puntos}, Área: {self.area}")
+        print(f"{indentacion}Figura: {self.identificador}, Tipo: {self.tipo}, Área: {self.area}, Puntos: {self.puntos}")
         for hijo in self.hijos:
             hijo.imprimirArbol(nivel + 1)
 
     def agregarNodosAGrafo(self, grafo, nivel=0):
-        etiqueta = f"{self.tipo}\nPuntos: {self.puntos}"
+        etiqueta = f"{self.tipo}\n{self.area}\n{self.puntos}"
         grafo.add_node(self.identificador, etiqueta=etiqueta, subset=nivel)
         for hijo in self.hijos:
             hijo.agregarNodosAGrafo(grafo, nivel + 1)
@@ -27,41 +27,59 @@ class NodoFigura:
 
 class ArbolFiguras:
     def __init__(self):
-        self.raiz = NodoFigura("Figuras Lista n", " ", [], 0)
+        
+        self.raizConsola = NodoFigura("Figuras", " ", [], 0)
+        self.tiposConsola = {
+            "Triángulo Rectángulo": NodoFigura("Triángulos Rectángulos", " ", [], 0),
+            "Cuadrado": NodoFigura("Cuadrados", " ", [], 0),
+            "Rectángulo": NodoFigura("Rectángulos", " ", [], 0)
+        }
+        self.raizConsola.hijos.extend(self.tiposConsola.values())
+
+        self.raiz = NodoFigura("Figuras", " ", " ", " ")
         self.tipos = {
-            "Triángulo Rectángulo": NodoFigura("Triángulos Rectángulos", "Tipo", [], 0),
-            "Cuadrado": NodoFigura("Cuadrados", "Tipo", [], 0),
-            "Rectángulo": NodoFigura("Rectángulos", "Tipo", [], 0)
+            "Triángulo Rectángulo": NodoFigura("Triángulos Rectángulos", " ", " ", " "),
+            "Cuadrado": NodoFigura("Cuadrados", " ", " ", " "),
+            "Rectángulo": NodoFigura("Rectángulos", " ", " ", " ")
         }
         self.raiz.hijos.extend(self.tipos.values())
-
+    
+    
     def agregarFigura(self, figura):
         tipo = figura["tipo"]
         if tipo in self.tipos:
-            nuevoNodo = NodoFigura(figura['identificador'], figura['tipo'], figura['puntos'], figura['area'])
-            self.tipos[tipo].agregarHijo(nuevoNodo)
+            numero = figura['identificador'].split('_')
+            areaN = f"Area{numero[1]}"
+            areaNodo = NodoFigura(f"{areaN} {figura['area']}", " ", " ", " ")
+            areaNodoConsola = NodoFigura(f"{figura['identificador']}", figura['tipo'], figura['puntos'], figura['area'])
+            for i, punto in enumerate(figura['puntos']):
+                puntoName = f"R{numero[1]}"
+                if 'Triángulo Rectángulo_' in figura['identificador']:
+                    puntoName = f"T{numero[1]}"
+                elif 'Cuadrado_' in figura['identificador']:
+                    puntoName = f"C{numero[1]}"
+                puntoNodo = NodoFigura(f"{puntoName}P{i+1} {[punto]}", " ", " ", " ")
+                puntoNodoConsola = NodoFigura(f"{figura['identificador']}_P_{i+1}", "Punto", [punto], "")
+                areaNodo.agregarHijo(puntoNodo)
+                areaNodoConsola.agregarHijo(puntoNodoConsola)
+            self.tipos[tipo].agregarHijo(areaNodo)
+            self.tiposConsola[tipo].agregarHijo(areaNodoConsola)
 
     def imprimirArbol(self):
-        self.raiz.imprimirArbol()
+        self.raizConsola.imprimirArbol()
 
     def graficarArbol(self):
         grafo = nx.DiGraph()
         self.raiz.agregarNodosAGrafo(grafo)
 
-        print(grafo)
-        print(self.raiz.identificador)
-
+        # pos = nx.drawing.nx_agraph.graphviz_layout(grafo, prog="dot", args=f',Gnodesep=3')
         pos = self.jerarquia(grafo, self.raiz.identificador)
         plt.figure(figsize=(12, 8))
 
-        print("POS:", pos)
+        nx.draw(grafo, pos, with_labels=True, node_size=3000, node_color="red", font_size=7, font_weight="bold", edge_color="gray")
 
-        nx.draw(grafo, pos, with_labels=True, node_size=3000, node_color="skyblue", font_size=10, font_weight="bold", edge_color="gray")
-
-        labels = nx.get_node_attributes(grafo, 'tipo')
-        labels = {k: f"{k}\n{v}" for k, v in labels.items()}
-
-        nx.draw_networkx_labels(grafo, pos, labels, font_size=8)
+        labels = nx.get_node_attributes(grafo, 'etiqueta')
+        nx.draw_networkx_labels(grafo, pos, labels, font_size=8, verticalalignment='center', horizontalalignment='center')
         plt.title("Árbol de Figuras Geométricas")
         plt.show()
 
@@ -88,7 +106,6 @@ def _jerarquia(G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5, pos=Non
             
     return pos
 
-# Crear el árbol de figuras
 arbolFiguras = ArbolFiguras()
 
 def agregarFiguraAlArbol(figura):

@@ -40,7 +40,7 @@ def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
     return calcularDistanciasRecursivo(puntos, i, j + 1, distancias)
 
 # Ejemplo de uso
-puntos = [(0, 0), (3, 4), (6, 8), (9, 12)]
+puntos = [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)]
 print(f"\nCalculando distancias para los puntos: {puntos}")
 distancias = calcularDistanciasRecursivo(puntos)
 print(f"\nDistancias finales calculadas: {distancias}")
