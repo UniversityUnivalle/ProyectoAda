@@ -72,10 +72,11 @@ class ArbolFiguras:
         grafo = nx.DiGraph()
         self.raiz.agregarNodosAGrafo(grafo)
 
+        # pos = nx.drawing.nx_agraph.graphviz_layout(grafo, prog="dot", args=f',Gnodesep=3')
         pos = self.jerarquia(grafo, self.raiz.identificador)
         plt.figure(figsize=(12, 8))
 
-        nx.draw(grafo, pos, with_labels=True, node_size=4000, node_color="red", font_size=6, font_weight="bold", edge_color="gray")
+        nx.draw(grafo, pos, with_labels=True, node_size=3000, node_color="red", font_size=7, font_weight="bold", edge_color="gray")
 
         labels = nx.get_node_attributes(grafo, 'etiqueta')
         nx.draw_networkx_labels(grafo, pos, labels, font_size=8, verticalalignment='center', horizontalalignment='center')
