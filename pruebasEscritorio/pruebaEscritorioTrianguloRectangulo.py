@@ -12,21 +12,25 @@ enter = "Presiona Enter para continuar..."
 
 
 def areaTrianguloRectangulo(puntos):
+
     print("Calculando el área del triángulo rectángulo con puntos:", puntos)
     input(enter)
+    xp1 = puntos[0][0] #(1, 2) -> xp1 = 1
+    print(f"xp1 =>  {xp1} ")
+    yp1 = puntos[0][1] #(1, 2) -> yp1 = 2
+    print(f"xp1 =>  {yp1}")
+    xp2 = puntos[1][0] #(4, 2) -> xp2 = 4
+    print(f"xp1 => {xp2}" )
+    yp2 = puntos[1][1] #(4, 2) -> yp2 = 2
+    print(f"xp1 =>  {yp2}")
+    xp3 = puntos[2][0] #(6, 3) -> xp3 = 6
+    print(f"xp1 =>  {xp3}")
+    yp3 = puntos[2][1] #(6, 3) -> yp3 = 3
+    print(f"xp1 =>  {yp3}")
 
-    base = calcularDistancia(puntos[0][0], puntos[0][1], puntos[1][0], puntos[1][1])
-    print("Base del triángulo calculada:", base)
-    input(enter)
-
-    altura = calcularDistancia(puntos[0][0], puntos[0][1], puntos[2][0], puntos[2][1])
-    print("Altura del triángulo calculada:", altura)
-    input(enter)
-
-    area = 0.5 * base * altura
+    area = 0.5 * abs((xp1 * (yp2 - yp3) ) + (xp2 * (yp3 - yp1)) + (xp3 * (yp1 - yp2)))
     print("Área del triángulo calculada:", area)
     input(enter)
-
     return area
 
 def elevarDistanciasCuadrado(distancias, index=0):

@@ -31,3 +31,4 @@ def eliminarUltimoLista(lista, i=0, nuevaLista=None):
     nuevaLista.append(lista[i])
 
     eliminarUltimoLista(lista, i + 1, nuevaLista)
+

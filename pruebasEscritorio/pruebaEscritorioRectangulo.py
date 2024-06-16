@@ -53,6 +53,6 @@ def esRectangulo(puntos):
     return es_rectangulo
 
 # Ejemplo de prueba
-puntos = [(0, 0), (2, 0), (2, 1), (0, 1)]
+puntos = [(1, 1), (1, 5), (5, 1), (1, -2), (5, -2)]
 print("Resultado de la verificación de rectángulo:", esRectangulo(puntos))
 print("Área del rectángulo:", areaRectangulo(puntos))
