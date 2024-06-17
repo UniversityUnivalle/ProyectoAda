@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-def install_pip():
+def Install_pip():
     try:
         import pip
         print("pip ya está instalado")
@@ -11,5 +11,16 @@ def install_pip():
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip'])
         print("pip instalado y actualizado exitosamente.")
 
-if __name__ == "__main__":
-    install_pip()
+def Install_Dependencies():
+    Install_pip()
+    try:
+        import matplotlib
+        import tabulate
+        import networkx
+    except ImportError:
+        import pip
+        pip.main(["install", "matplotlib"])
+        pip.main(["install", "tabulate"])
+        pip.main(["install", "networkx"])
+    
+    print("Dependencias Instaladas")
