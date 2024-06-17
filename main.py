@@ -1,3 +1,13 @@
+# import os
+# import sys
+# # Agregar la ruta al proyecto
+# projectRoot = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# sys.path.append(projectRoot)
+
+from instalacionDependencias.dependencias import Install_Dependencies
+
+Install_Dependencies()
+
 from verificarListas import verificarListas
 from trianguloRectangulo import esTrianguloRectangulo, areaTrianguloRectangulo
 from cuadrado import esCuadrado, areaCuadrado
