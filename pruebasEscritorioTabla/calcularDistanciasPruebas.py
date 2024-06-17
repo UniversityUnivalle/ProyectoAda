@@ -33,18 +33,8 @@ def calcularDistancia(x1, y1, x2, y2):
 
 def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
     os.system('cls')
-    resultadosCalcularDistanciasRecursivo.append([puntos, i, j, distancias, "", "", "", "", "", "", "", ""])
-    print(tabulate(resultadosCalcularDistanciasRecursivo, headers))
-    input("Presione Enter Para Continuar...")
-    os.system('cls')
-    resultadosCalcularDistanciasRecursivo.append(["", "", "", "", distancias is None, "", "", "", "", "", "", ""])
-    print(tabulate(resultadosCalcularDistanciasRecursivo, headers))
-    input("Presione Enter Para Continuar...")
-    if distancias is None:
-        distancias = []
-    
-    os.system('cls')
-    resultadosCalcularDistanciasRecursivo.append(["", "", "", distancias, "", "", "", "", "", "", "", ""])
+    dist = distancias[:]
+    resultadosCalcularDistanciasRecursivo.append([puntos, i, j, dist, "", "", "", "", "", "", "", ""])
     print(tabulate(resultadosCalcularDistanciasRecursivo, headers))
     input("Presione Enter Para Continuar...")
 
@@ -70,11 +60,13 @@ def calcularDistanciasRecursivo(puntos, i=0, j=1, distancias=None):
 
     distancias.append(calcularDistancia(puntos[i][0], puntos[i][1], puntos[j][0], puntos[j][1]))
 
+    dis = distancias[:]
     os.system('cls')
-    resultadosCalcularDistanciasRecursivo.append(["", "", "", distancias, "", "", "", "", "", "", "", ""])
+    resultadosCalcularDistanciasRecursivo.append(["", "", "", dis, "", "", "", "", "", "", "", ""])
     print(tabulate(resultadosCalcularDistanciasRecursivo, headers))
     input("Presione Enter Para Continuar...")
 
     return calcularDistanciasRecursivo(puntos, i, j + 1, distancias)
 
-calcularDistanciasRecursivo([(1, 1), (1, 4), (4, 1)])
+distancias = calcularDistanciasRecursivo([(1, 1), (1, 4), (4, 1)], distancias=[])
+GenerarText(tabulate(resultadosCalcularDistanciasRecursivo, headers), [(1, 1), (1, 4), (4, 1)], "PruebaEscritorioCalcularDistanciasRecursivo.txt", distancias)
