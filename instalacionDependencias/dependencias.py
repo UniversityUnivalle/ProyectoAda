@@ -4,7 +4,6 @@ import sys
 def Install_pip():
     try:
         import pip
-        print("pip ya está instalado")
     except ImportError:
         print("pip no está instalado. Procediendo a instalar pip.")
         subprocess.check_call([sys.executable, '-m', 'ensurepip', '--default-pip'])
@@ -23,4 +22,4 @@ def Install_Dependencies():
         pip.main(["install", "tabulate"])
         pip.main(["install", "networkx"])
     
-    print("Dependencias Instaladas")
+    print("Dependencias Instaladas correctamente...")
